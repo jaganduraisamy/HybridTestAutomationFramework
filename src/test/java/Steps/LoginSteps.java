@@ -1,35 +1,34 @@
-package StepDef;
+package Steps;
 
+import Base.BaseUtil;
 import POJO.User;
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.By;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class LoginSteps {
+public class LoginSteps extends BaseUtil {
+	
+	private BaseUtil base;
+	
+	public LoginSteps(BaseUtil base){
+		this.base = base;
+	}
+	
 	@Given("^I have launched FB login page$")
-	public void iHaveLaunchedFBLoginPage() {
-		System.out.println("----iHaveLaunchedFBLoginPage");
-	}
-	
-	@When("^I enter invalid username$")
-	public void iEnterInvalidUsername() {
-		System.out.println("----iEnterInvalidUsername");
-	}
-	
-	@And("^I enter invalid password$")
-	public void iEnterInvalidPassword() {
-		System.out.println("----iEnterInvalidPassword");
+	public void iHaveLaunchedFBLoginPage() throws InterruptedException {
+		base.Driver.get("https://www.facebook.com/");
+		Thread.sleep(5000);
 	}
 	
 	@And("^I click on login button$")
-	public void iClickOnLoginButton() {
-		System.out.println("----iClickOnLoginButton");
+	public void iClickOnLoginButton() throws InterruptedException {
+		base.Driver.findElement(By.id("u_0_b")).click();
+		Thread.sleep(2000);
 	}
 	
 	@Then("^I should see error message$")
@@ -39,12 +38,12 @@ public class LoginSteps {
 	
 	@When("^I enter username is \"([^\"]*)\"$")
 	public void iEnterUsernameIs(String username) throws Throwable {
-		System.out.println("----iEnterUsernameIs => " + username);
+		base.Driver.findElement(By.id("email")).sendKeys(username);
 	}
 	
 	@And("^I enter password is \"([^\"]*)\"$")
 	public void iEnterPasswordIs(String password) throws Throwable {
-		System.out.println("----iEnterPasswordIs => " + password);
+		base.Driver.findElement(By.id("pass")).sendKeys(password);
 	}
 	
 	@And("^I enter credentials$")
