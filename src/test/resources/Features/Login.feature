@@ -20,7 +20,6 @@ Feature:  As a strange user should not allow to login to fb
     When I enter username is <username>
     And I enter password is <password>
     And I click on login button
-    And I verify new java 8 feature
     Then I should see error message
     Examples:
       | username   | password       |
