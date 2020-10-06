@@ -1,17 +1,45 @@
 package Base;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class BasePage {
 	public WebDriver driver;
+	public WebDriverWait wait;
 	
 	public BasePage(org.openqa.selenium.WebDriver _driver) {
 		PageFactory.initElements(_driver, this);
 		this.driver = _driver;
+		wait = new WebDriverWait(driver, 15);
+	}
+	
+	//Click Method
+	public void click(By elementLocation) {
+		waitVisibility(elementLocation);
+		driver.findElement(elementLocation).click();
+	}
+	
+	//Write Text
+	public void writeText(By elementLocation, String text) {
+		waitVisibility(elementLocation);
+		driver.findElement(elementLocation).sendKeys(text);
+	}
+	
+	//Read Text
+	public String readText(By elementLocation) {
+		waitVisibility(elementLocation);
+		return driver.findElement(elementLocation).getText();
+	}
+	
+	//Wait
+	public void waitVisibility(By by){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 	}
 	
 	protected void waitForElementVisible(WebElement element) {

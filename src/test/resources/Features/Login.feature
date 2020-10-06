@@ -1,13 +1,15 @@
 Feature:  As a strange user should not allow to login to fb
 
-  Scenario: Strange user should not allow to login to FB
+  @test1
+  Scenario: Strange user should not allow to login to FB-1
     Given I have launched FB login page
     When I enter username is "testUser"
     And I enter password is "testPassword"
     And I click on login button
     Then I should see error message
 
-  Scenario: Strange user should not allow to login to FB
+  @test2
+  Scenario: Strange user should not allow to login to FB-2
     Given I have launched FB login page
     And I enter credentials
       | username | password     |
@@ -15,7 +17,8 @@ Feature:  As a strange user should not allow to login to fb
     And I click on login button
     Then I should see error message
 
-  Scenario Outline: Strange user should not allow to login to FB
+  @test3
+  Scenario Outline: Strange user should not allow to login to FB-3
     Given I have launched FB login page
     When I enter username is <username>
     And I enter password is <password>
