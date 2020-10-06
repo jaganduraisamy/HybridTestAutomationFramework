@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Hybrid test automation suite" configfailurepolicy="skip">
+    <listeners>
+        <listener class-name="Utils.Listeners.NGTestListener"></listener>
+    </listeners>
+<!--    <parameter name="os" value="mac"></parameter>-->
+<!--    <parameter name="browser" value="chrome"></parameter>-->
+    <test name="FB login tests">
+        <classes>
+            <class name="Runner.TestRunner">
+            </class>
+        </classes>
+    </test>
+</suite>
